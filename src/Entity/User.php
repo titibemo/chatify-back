@@ -2,17 +2,24 @@
 
 namespace App\Entity;
 
+
+use Assert\NotBlank;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -20,8 +27,9 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 // #[ApiResource(
 //     //security: 'is_granted("ROLE_ADMIN")',
 // )]
-#[Get]
-#[GetCollection (security: "is_granted('ROLE_ADMIN')")]
+// #[Get]
+// #[GetCollection (security: "is_granted('ROLE_ADMIN')")]
+#[ApiResource]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -52,6 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private ?array $favorite = null;
+
 
     /**
      * @var Collection<int, Discussions>
@@ -128,6 +137,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 
     /**
      * @see UserInterface

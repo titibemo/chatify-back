@@ -29,6 +29,16 @@ services:
         class: App\EventListener\AuthenticationFailureListener
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
+    
+    # App\EventSubscriber\PasswordSubscriber:
+    #     arguments:
+    #         $userPasswordHasherInterface: '@security.password_hasher'
+    #     tags:
+    #         - { name: 'kernel.event_subscriber', priority: -10 }
+
+    # App\State\UserPasswordHasher:
+    #     bind:
+    #         $processor: '@api_platform.doctrine.orm.state.persist_processor'
         
 
     # add more service definitions when explicit configuration is needed
