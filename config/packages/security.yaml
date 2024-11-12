@@ -48,9 +48,9 @@ security:
     access_control:
         #- { path: ^/api/login, roles: PUBLIC_ACCESS }
         # - { path: ^/api/users/[0-9]+, roles: ROLE_USER }
-        - { path: ^/api/users, roles: ROLE_USER }
         #- { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/profile, roles: ROLE_USER }
+        #- { path: ^/api/users, roles: ROLE_USER }
 
 when@test:
     security:
