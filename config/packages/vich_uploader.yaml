@@ -1,0 +1,17 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: attribute
+    # mappings:
+    #     media_object:
+    #         uri_prefix: /media
+    #         upload_destination: '%kernel.project_dir%/public/media'
+    #   # Will rename uploaded files using a uniqueid as a suffix.
+    #         namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    mappings:
+       book:
+           uri_prefix: /images/book
+           upload_destination: '%kernel.project_dir%/public/images/book'
+           namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
